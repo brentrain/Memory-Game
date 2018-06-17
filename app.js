@@ -1,5 +1,13 @@
 // Deck Characters - a few were changes to mix it up a bit
 
+//My Dilemma with thi program is that it looks a liot like other programs I have looked at.
+//with that being said I would like to thank the folks at Youtube and StackOverflow for their
+//Inspiration.  I would like to thank Trafersy Media for ROCKING it with the tutorials.
+//I would like to thank my fellow students at Udacity for their assistance and their inspiration while 
+//building thia program.
+//Should anyting in this program resemble any work by any one else it is purely conincidetal
+//Last, but not least, thank you to Udacity for this amazing opportunit - For that I am Grateful
+
 let deck = [
     'at', 'at',
     'bus', 'bus',
@@ -12,16 +20,13 @@ let deck = [
 ];
 
 let firstCardSelected;
-
 let moves = 0;
-
 let remainingMatches = 8;
-
 let stars = 0;
 
 //displays cards on the page
 
-
+//Shuffle loop from Stack Overflow -
 function shuffle(array) {
     var currentIndex = array.length,
         temporaryValue, randomIndex;
@@ -48,8 +53,8 @@ function startGame() {
     deckElement.innerHTML = '';
     for (var index = 0; index < deck.length; index++) {
 
-        const card = document.createElement('li');
-        card.addEventListener('click', openCard);
+        const card = document.createElement('flip');
+        card.addEventListener('click', flipTheCard);
         card.className = 'card';
         const cardType = document.createElement('i');
         cardType.className = 'fa fa-' + deck[index];
@@ -153,6 +158,7 @@ function gameEnd() {
     document.getElementById('finaltime').textContent =Math.round(duration);
 }
 
+// Rating System
 
 function rating() {
 
