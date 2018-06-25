@@ -1,20 +1,14 @@
 # Memory Game Project
 
-## Table of Contents
+this is a memory game for the Udacity Front End Developer Nanodegree program
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+The objet of this game is to get 2 cards to match.  When they match they remain turned over.  When 2 cards do not match
+the cards turn back over and the player selects 2 different cards until a match is found.
 
-## Instructions
+When the player makes more than 25 moves, 1 star will disappear and when the player makes more than 50 moves another star
+will disappear.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+the object of the game is to turn all of the cards over in the shortest amount of time.
 
-To get started, open `js/app.js` and start building out the app's functionality
+******
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
