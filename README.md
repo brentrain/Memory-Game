@@ -2,8 +2,10 @@
 Udaicity memory Game
 using HTML, CSS, JS and DOM
 
-I have learned that some of the DOM funcitons, such as .getElementByID can lead to making changes to the DOM much easier.
+this is a memory game which allows the player to choose two cards.  If the cards match they remain turned over and the player selects again.
 
-I rounded the cards and changed the background colors to give this project a different look.
+if the cards do not match then they turn back over and the player must find 2 matching cards
 
-throughout this chapter I realized that I really need to learn about git more - and hopefully hae it make more sense than it does now.
+after 25 moves the player loses a star and after 50 moves another star is taken away.
+
+Good luck!!
