@@ -1,8 +1,13 @@
-/* First off I would like to thank Udacity for the starter files to this program.   With a program like this it would stand to reason that
-there would some similartities.
 
-I would like thank Traversy Media who helped me to understand the javascript.  I would like to thank my other classmates for their help in 
-building this program.  Anyone who I missed in my thanking and giving credit to I apologize. */
+
+//My Dilemma with thi program is that it looks a liot like other programs I have looked at.
+//with that being said I would like to thank the folks at Youtube and StackOverflow for their
+//Inspiration.  I would like to thank Trafersy Media for ROCKING it with the tutorials.
+//I would like to thank my fellow students at Udacity for their assistance and their inspiration while 
+//building thia program.
+//Should anyting in this program resemble any work by any one else it is purely conincidetal
+//Last, but not least, thank you to Udacity for this amazing opportunit - For that I am Grateful
+
 
 /* Variables*/
 let newList = [];
