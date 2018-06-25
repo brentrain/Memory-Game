@@ -1,35 +1,39 @@
-// Deck Characters - a few were changes to mix it up a bit
+/* First off I would like to thank Udacity for the starter files to this program.   With a program like this it would stand to reason that
+there would some similartities.
 
-//My Dilemma with thi program is that it looks a liot like other programs I have looked at.
-//with that being said I would like to thank the folks at Youtube and StackOverflow for their
-//Inspiration.  I would like to thank Trafersy Media for ROCKING it with the tutorials.
-//I would like to thank my fellow students at Udacity for their assistance and their inspiration while 
-//building thia program.
-//Should anyting in this program resemble any work by any one else it is purely conincidetal
-//Last, but not least, thank you to Udacity for this amazing opportunit - For that I am Grateful
+I would like thank Traversy Media who helped me to understand the javascript.  I would like to thank my other classmates for their help in 
+building this program.  Anyone who I missed in my thanking and giving credit to I apologize. */
 
-let deck = [
-    'at', 'at',
-    'bus', 'bus',
-    'asterisk', 'asterisk',
-    'bolt', 'bolt',
-    'cube', 'cube',
-    'leaf', 'leaf',
-    'bicycle', 'bicycle',
-    'bomb', 'bomb'
-];
+/* Variables*/
+let newList = [];
+let openCardsList = [];
+let jsmoves = [];
+let matchedGameFields = [];
 
-let firstCardSelected;
-let moves = 0;
-let remainingMatches = 8;
-let stars = 0;
+/*
+ * List of cards
+ */
+let list = ["fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bicycle", "fa-bomb", "fa-diamond", "fa-paper-plane-o", "fa-anchor", "fa-bolt", "fa-cube", "fa-leaf", "fa-bicycle", "fa-bomb"];
 
-//displays cards on the page
 
-//Shuffle loop from Stack Overflow -
+newList = shuffle(list); /* shuffle cards */
+
+let deck = document.getElementsByClassName("deck")[0]
+deck.innerHTML = "";
+
+for (let j = 0; j <16 ; j++) {                                                  
+    let para = document.createElement("li");                                    
+    para.classList.add("card");
+    let para2 = document.createElement("i");
+    para2.classList.add("fa");
+    para2.classList.add(newList[j]);
+    para.appendChild(para2);                                                    
+    deck.appendChild(para);
+};
+
+// Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length,
-        temporaryValue, randomIndex;
+    var currentIndex = array.length, temporaryValue, randomIndex;
 
     while (currentIndex !== 0) {
         randomIndex = Math.floor(Math.random() * currentIndex);
@@ -43,152 +47,111 @@ function shuffle(array) {
 }
 
 
+for (let k =0; k < 16; k++){                                                    
+let card = document.getElementsByClassName("card")[k]
+card.addEventListener('click', listing);
+card.addEventListener('click', showCard);
+card.addEventListener('click', moveCounter);
+};
 
-function startGame() {
-    startTime = undefined;
-    deck = shuffle(deck);
-    const deckElement = document.getElementById('deck');
-    // clear cards incase the reresh button is used
+function listing(event) {                                                       
+    openCardsList.push(event.target.firstChild);
+    event.target.classList.add('open');
+    openCardsList[0].parentNode.removeEventListener('click', listing);
+};
 
-    deckElement.innerHTML = '';
-    for (var index = 0; index < deck.length; index++) {
+function showCard(event) {                                                      
+    event.target.classList.add('show');
+    openCardsList[0].parentNode.removeEventListener('click', showCard)
+};
 
-        const card = document.createElement('flip');
-        card.addEventListener('click', flipTheCard);
-        card.className = 'card';
-        const cardType = document.createElement('i');
-        cardType.className = 'fa fa-' + deck[index];
-        card.append(cardType);
-        deckElement.append(card);
+function moveCounter(event) {                                                   /* move counter */
+    jsmoves.push(event.target.firstChild);
+    let moves = document.getElementsByClassName("moves")[0]
+    moves.innerHTML = jsmoves.length
+    if (jsmoves.length == 25){                                                  /* first star at 25 moves*/
+      let stars1 = document.getElementsByClassName("star1")[0];
+      stars1.remove();
     }
-   
-    moves = 0;
-    rating();
-    document.getElementById('moves').textContent = moves;
-    remainingMatches = 8;
+    else if (jsmoves.length == 50){                                             /* second star at 50 moves*/
+      let stars2 = document.getElementsByClassName("star2")[0];
+      stars2.remove();
+    };
+    openCardsList[0].parentNode.removeEventListener('click', moveCounter);
+    matchFunction();
+};
 
-    document.getElementById('game').style.display = 'block';
-    document.getElementById('completed').style.display = 'none';
-}
-let timer = setInterval(function () {
-    startTimer();
-}, 1000);
-let startTime;
-let duration = 0;
+function matchFunction() {                                                      
+    if (openCardsList.length == 2)
+    { for (let l =0; l < 16; l++){
+        let card = document.getElementsByClassName("card")[l]
+        card.removeEventListener('click', showCard)                             
+        card.removeEventListener('click', listing)
+        card.removeEventListener('click', moveCounter)
+      };
+      if (openCardsList[0].classList.value == openCardsList[1].classList.value)
+      {
+      openCardsList[0].parentNode.classList.remove("open");                     
+      openCardsList[0].parentNode.classList.remove("show");
+      openCardsList[0].parentNode.classList.add("match");
+      openCardsList[1].parentNode.classList.remove("open");
+      openCardsList[1].parentNode.classList.remove("show");
+      openCardsList[1].parentNode.classList.add("match");
 
-function startTimer() {
-    if (startTime !== undefined) {
-        const currentTime = new Date().getTime();
-        duration = (currentTime - startTime) / 1000 ;
-       
-        document.getElementById('timer').innerHTML = Math.round(duration);
-    }else{
-        document.getElementById('timer').innerHTML = '0';
+      matchedGameFields = document.getElementsByClassName("match");
+      if (matchedGameFields.length == 16) {                                     /* when all the cards match the game ends */
+          clearInterval(myTimer);
+          let conf = confirm("WOO HOO!!! Play Again? -press [OK]!  Time: " + sec + " sec.  Rating: " + document.getElementsByClassName("fa-star").length);
+          if (conf == true) {
+            restart();
+          };
+      }
+      openCardsList = [];
+      for (let m =0; m < 16; m++){
+      let card = document.getElementsByClassName("card")[m]
+
+        if (card.classList != "card match") {
+        card.addEventListener('click', listing);                                
+        card.addEventListener('click', showCard);
+        card.addEventListener('click', moveCounter);
+
+        };
+      };
+      } else if (openCardsList[0].classList.value != openCardsList[1].classList.value)
+      {
+          setTimeout(function()
+          {
+          openCardsList[0].parentNode.classList.remove("open");                 
+          openCardsList[0].parentNode.classList.remove("show");
+          openCardsList[1].parentNode.classList.remove("open");
+          openCardsList[1].parentNode.classList.remove("show");
+          openCardsList = [];
+          for (let m =0; m < 16; m++){
+          let card = document.getElementsByClassName("card")[m]
+
+            if (card.classList != "card match") {
+            card.addEventListener('click', listing);                            
+            card.addEventListener('click', showCard);
+            card.addEventListener('click', moveCounter);
+
+            };
+          };
+        }, 1000);                                                               
+      }
+
     }
-}
+};                                                                              
 
-function stopTimer() {
-    clearInterval(timer);
-}
+function time() {                                                               
+sec++;
+document.getElementById("seconds").innerHTML=sec+" sec.";
+};
+let sec = 0;
+let myTimer = setInterval('time()',1000);
 
-function openCard(event) {
-    event.currentTarget.className = 'card open show';
-    if (firstCardSelected === undefined) {
-        firstCardSelected = event.currentTarget;
-    } else {
-        checkMatch(firstCardSelected, event.currentTarget);
-        firstCardSelected = undefined;
-    }
+let restarter = document.getElementsByClassName("restart")[0]
+restarter.addEventListener('click', restart)
 
-}
-
-// checks the cards for matches
-
-function checkMatch(firstCard, secondCard) {
-    if (startTime=== undefined) {
-        // if duration is zero the timer hansent started yet
-        startTime = new Date().getTime();
-    }
-
-    // stops clicks till another card is chosen
-
-    document.getElementById('deck').className = 'disable-clicks deck';
-    const firstCardType = firstCard.childNodes[0].className;
-    const secondCardType = secondCard.childNodes[0].className;
-    if (firstCard !== secondCard) {
-        moves = moves + 1;
-        rating();
-        document.getElementById('moves').textContent = moves;
-    }
-    setTimeout(function () {
-        if (firstCardType === secondCardType && firstCard !== secondCard) {
-
-            firstCard.className = 'card match';
-            secondCard.className = 'card match';
-            firstCard.removeEventListener('click', openCard);
-            secondCard.removeEventListener('click', openCard);
-            remainingMatches--;
-            // another card can be picked again
-            document.getElementById('deck').className = 'deck';
-            if (remainingMatches === 0) {
-                gameEnd();
-            }
-        } else {
-            firstCard.className = 'card not-match';
-            secondCard.className = 'card not-match';
-            setTimeout(function () {
-                firstCard.className = 'card';
-                secondCard.className = 'card';
-                // another card can be picked again
-                document.getElementById('deck').className = 'deck';
-            }, 500);
-
-        }
-    }, 700);
-
-}
-
-// Final Results
-
-function gameEnd() {
-    document.getElementById('game').style.display = 'none';
-    document.getElementById('completed').style.display = 'block';
-    document.getElementById('tally').textContent = moves;
-    document.getElementById('stars').textContent = stars;
-    document.getElementById('finaltime').textContent =Math.round(duration);
-}
-
-// Rating System
-
-function rating() {
-
-    if (moves > 50) {
-        document.getElementById('star1').className = 'fa fa-star-o';
-        document.getElementById('star2').className = 'fa fa-star-o';
-        document.getElementById('star3').className = 'fa fa-star-o';
-        stars = 0;
-    } else if (moves > 32) {
-        document.getElementById('star1').className = 'fa fa-star';
-        document.getElementById('star2').className = 'fa fa-star-o';
-        document.getElementById('star3').className = 'fa fa-star-o';
-        stars = 1;
-    } else if (moves > 16) {
-        document.getElementById('star1').className = 'fa fa-star';
-        document.getElementById('star2').className = 'fa fa-star';
-        document.getElementById('star3').className = 'fa fa-star-o';
-        stars = 2;
-    } else {
-        document.getElementById('star1').className = 'fa fa-star';
-        document.getElementById('star2').className = 'fa fa-star';
-        document.getElementById('star3').className = 'fa fa-star';
-        stars = 3;
-    }
-}
-
-// Listens for the start of the game (click starts the game)
-
-document.getElementById('restart').addEventListener('click', startGame);
-startGame();
-
-document.getElementById('replay').addEventListener('click', startGame);
-startGame();
+function restart(event) {
+  location.reload();
+};
