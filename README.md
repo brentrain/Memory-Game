@@ -1,11 +1,20 @@
-# Memory-Game
-Udaicity memory Game
-using HTML, CSS, JS and DOM
+# Memory Game Project
 
-this is a memory game which allows the player to choose two cards.  If the cards match they remain turned over and the player selects again.
+## Table of Contents
 
-if the cards do not match then they turn back over and the player must find 2 matching cards
+* [Instructions](#instructions)
+* [Contributing](#contributing)
 
-after 25 moves the player loses a star and after 50 moves another star is taken away.
+## Instructions
 
-Good luck!!
+The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+
+To get started, open `js/app.js` and start building out the app's functionality
+
+For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+
+## Contributing
+
+This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+
+For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
