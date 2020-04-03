@@ -1,6 +1,6 @@
 # Memory Game Project
-
-this is a memory game for the Udacity Front End Developer Nanodegree program
+*******
+initially done in 2018 - updated colors and shapes in 2020
 
 The objet of this game is to get 2 cards to match.  When they match they remain turned over.  When 2 cards do not match
 the cards turn back over and the player selects 2 different cards until a match is found.

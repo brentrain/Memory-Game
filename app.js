@@ -1,14 +1,5 @@
 
 
-//My Dilemma with thi program is that it looks a liot like other programs I have looked at.
-//with that being said I would like to thank the folks at Youtube and StackOverflow for their
-//Inspiration.  I would like to thank Trafersy Media for ROCKING it with the tutorials.
-//I would like to thank my fellow students at Udacity for their assistance and their inspiration while 
-//building thia program.
-//Should anyting in this program resemble any work by any one else it is purely conincidetal
-//Last, but not least, thank you to Udacity for this amazing opportunit - For that I am Grateful
-
-
 /* Variables*/
 let newList = [];
 let openCardsList = [];
@@ -36,7 +27,7 @@ for (let j = 0; j <16 ; j++) {
     deck.appendChild(para);
 };
 
-// Shuffle function from http://stackoverflow.com/a/2450976
+// Shuffle 
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -106,7 +97,7 @@ function matchFunction() {
       matchedGameFields = document.getElementsByClassName("match");
       if (matchedGameFields.length == 16) {                                     /* when all the cards match the game ends */
           clearInterval(myTimer);
-          let conf = confirm("WOO HOO!!! Play Again? -press [OK]!  Time: " + sec + " sec.  Rating: " + document.getElementsByClassName("fa-star").length);
+          let conf = confirm("Play Again? -press [OK]!  Time: " + sec + " sec.  Rating: " + document.getElementsByClassName("fa-star").length);
           if (conf == true) {
             restart();
           };

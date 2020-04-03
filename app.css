@@ -29,7 +29,7 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Coda', sans-serif;
     font-weight: 300;
     color: white;
 }
@@ -41,9 +41,9 @@ h1 {
 .deck {
     width: 660px;
     min-height: 680px;
-    background: radial-gradient(circle, yellow, blue, green);
+    background: lightgray;
     padding: 32px;
-    border-radius: 10px;
+    border-radius: 5px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
     display: flex;
     flex-wrap: wrap;
@@ -55,20 +55,36 @@ h1 {
 .deck .card {
     height: 125px;
     width: 125px;
-    background: lightyellow;
+    background: lightblue;
+    font-size: 0;
+    color: white;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px black solid;
+    box-shadow: 5px 2px 20px 0 rgba(7, 13, 17, 0.5);
+}
+
+.deck .card:hover {
+    height: 125px;
+    width: 125px;
+    background: lightsalmon;
     font-size: 0;
     color: red;
     border-radius: 60px;
     cursor: pointer;
     display: flex;
     justify-content: center;
+    border: 6px black solid;
     align-items: center;
-    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+    box-shadow: 5px 2px 20px 0 rgba(7, 13, 17, 0.5);
 }
 
 .deck .card.open {
     transform: rotateY(0);
-    background: #02b3e4;
+    background: black;
     cursor: default;
 }
 
